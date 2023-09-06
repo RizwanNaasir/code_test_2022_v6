@@ -7,31 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 use DTApi\Exceptions\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class BaseRepository
+class TestBaseRepository
 {
-
-    /**
-     * @var Model
-     */
-    protected $model;
-
     /**
      * @var array
      */
-    protected $validationRules = [];
+    protected array $validationRules = [];
 
-    /**
-     * @param Model $model
-     */
-    public function __construct(Model $model = null)
+    public function __construct(protected ?Model $model = null)
     {
-        $this->model = $model;
     }
 
     /**
      * @return array
      */
-    public function validatorAttributeNames()
+    public function validatorAttributeNames(): array
     {
         return [];
     }

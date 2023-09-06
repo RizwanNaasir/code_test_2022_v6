@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\Log;
 
 class TeHelper
 {
-    public static function fetchLanguageFromJobId($id)
+    public static function fetchLanguageFromJobId(int|string $id): string
     {
         $language = Language::findOrFail($id);
-        return $language1 = $language->language;
+        return $language->language;
     }
 
-    public static function getUsermeta($user_id, $key = false)
+    public static function getUserMeta(int|string $user_id, bool $key = false)
     {
-        return $user = UserMeta::where('user_id', $user_id)->first()->$key;
+        $user = UserMeta::where('user_id', $user_id)->first()->$key;
         if (!$key)
             return $user->usermeta()->get()->all();
         else {
@@ -30,17 +30,17 @@ class TeHelper
         }
     }
 
-    public static function convertJobIdsInObjs($jobs_ids)
+    public static function convertJobIdsInObjs(array $jobs_ids): array
     {
 
-        $jobs = array();
+        $jobs = [];
         foreach ($jobs_ids as $job_obj) {
             $jobs[] = Job::findOrFail($job_obj->id);
         }
         return $jobs;
     }
 
-    public static function willExpireAt($due_time, $created_at)
+    public static function willExpireAt(string $due_time, string $created_at)
     {
         $due_time = Carbon::parse($due_time);
         $created_at = Carbon::parse($created_at);

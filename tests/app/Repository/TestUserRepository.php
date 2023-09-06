@@ -22,7 +22,7 @@ use Monolog\Handler\FirePHPHandler;
  * Class BookingRepository
  * @package DTApi\Repository
  */
-class UserRepository extends BaseRepository
+class TestUserRepository extends TestBaseRepository
 {
 
     protected $model;
